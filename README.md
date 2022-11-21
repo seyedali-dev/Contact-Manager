@@ -12,9 +12,6 @@ This project uses these technologies:
 7- Hibernate validator
 
 
-sr/bin/bash: line 1: q: command not found
-ls
-dif
 
 
 
@@ -26,5 +23,8 @@ dif
 
 
 
-fsk
+
+
+
+
 
