@@ -1,0 +1,47 @@
+body{
+    height: 100vh;
+}
+.logIn{
+    background-color: #2a2b38;
+    margin: 0 auto;
+}
+
+.inputs input{
+    height: 50px;
+    width: 65%;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: 2px #3498db solid;
+    margin: 0 auto;
+    transition: 0.5s;
+}
+
+.inputs input:focus{
+    width: 70%;
+    border: 2px #DAA520 solid;
+}
+
+.links a:hover{
+    text-decoration: underline !important;
+}
+
+.submit-logIn input{
+    border: 2px #DAA520 solid;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 auto;
+    transition: 0.5s;
+}
+
+.submit-logIn input:hover{
+    background-color: #DAA520;
+}
+
+.box-shadow{
+    box-shadow: 0px 8px 20px rgb(88, 88, 88);
+}
+
+.icons a:hover{
+    transform: rotate(360deg);
+    transition: all 1s;
+}
+

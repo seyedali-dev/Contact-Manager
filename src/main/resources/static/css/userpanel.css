@@ -1,0 +1,74 @@
+/* sidebar */
+.sidebar{
+    width: 18%;
+    height: 100%!important;
+    position: fixed;
+    padding-top: 45px;
+    background: #23273b;
+    z-index: 99999999999999999999999999999;
+}
+
+/*all the anchor tags in sidebar*/
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: white;
+}
+.sidebar a:hover{
+    background: #46098a;
+}
+.sidebar .divider{
+    height:.5px;
+    width:100%;
+    background:#e2e2e2;
+    margin-top:10px;
+}
+/*for responsive -> mobile user*/
+@media only screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+        width: 90%!important;
+        background: #23273b;
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+    }
+    .content{
+        margin-left: 0 !important;
+    }
+}
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    cursor: pointer;
+    color: white;
+}
+
+/* content */
+.content{
+    margin-left: 20%;
+}
+
+/*contact picture - base page*/
+.profile_picture_base {
+    width: 50px;
+    height: 50px;
+    object-fit: cover; /*so that the picture won't get stretched*/
+    border-radius: 50%; /*pictures will be rounded*/
+}
+
+/*search contact*/
+.search-container {
+    position: relative;
+}
+.search-result {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    background: white;
+    border: 1px solid;
+    display: none;
+}

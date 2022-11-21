@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="normal/base::layout(~{::section})" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/addcontactform.css}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+    <section>
+        <div class="card mr-5">
+            <div class="card-body">
+                <h1 class="text-center">Add Contact</h1>
+                <div class="container-fluid mt-1">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-5">
+                            <form th:action="@{/user/process-contact}" th:object="${contact}" method="POST" enctype="multipart/form-data" class="mt-2">
+
+
+                                <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                                    <p th:text="${session.message.message}" class="text-center"></p>
+                                    <th:block th:text="${#session.removeAttribute('message')}"/>
+                                </div>
+
+
+                                <!--name-->
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                           id="name"
+                                           name="name"
+                                           th:field="*{name}"
+                                           th:value="${contact.name}"
+                                           th:classappend="${#fields.hasErrors('name')}?'is-invalid':''"
+                                           placeholder=" enter Name here">
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}"></div>
+                                </div>
+                                <!--nickname-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-user-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                           id="nickname"
+                                           name="nickname"
+                                           th:classappend="${#fields.hasErrors('nickname')}?'is-invalid':''"
+                                           th:field="*{nickname}"
+                                           th:value="${contact.nickname}"
+                                           placeholder=" enter nickname here">
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('nickname')}" th:text="${e}"></div>
+                                </div>
+                                <!--email-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email"
+                                           id="email"
+                                           name="email"
+                                           th:field="*{email}"
+                                           th:value="${contact.email}"
+                                           th:classappend="${#fields.hasErrors('email')}?'is-invalid':''"
+                                           placeholder=" enter Email here">
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('email')}" th:text="${e}"></div>
+                                </div>
+                                <!--phone-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                    </div>
+                                    <input type="number"
+                                           id="phone"
+                                           name="phone"
+                                           th:field="*{phone}"
+                                           th:value="${contact.phone}"
+                                           th:classappend="${#fields.hasErrors('phone')}?'is-invalid':''"
+                                           placeholder=" enter Phone number here">
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('phone')}" th:text="${e}"></div>
+                                </div>
+                                <!--work-->
+                                <div class="input-group mt-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                           id="work"
+                                           name="work"
+                                           th:field="*{work}"
+                                           th:value="${contact.work}"
+                                           th:classappend="${#fields.hasErrors('work')}?'is-invalid':''"
+                                           placeholder=" enter Job here">
+                                    <div class="invalid-feedback" th:each="e:${#fields.errors('work')}" th:text="${e}"></div>
+                                </div>
+                                <!--description-->
+                                <div class="form-group mt-3">
+                                    <textarea name="description"
+                                              th:field="*{description}"
+                                              th:value="${contact.description}"
+                                              id="description" cols="30" rows="10"
+                                              class="from-control"
+                                              placeholder="enter contact description here "></textarea>
+                                </div>
+                                <!--image-->
+                                <div class="custom-file">
+                                    <input type="file" name="profileImage" id="profileImage"/>
+                                </div>
+
+                                <!--submit button-->
+                                <div class="container">
+                                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<script th:src="@{/js/addcontactform.js}"></script>
+</body>
+</html>

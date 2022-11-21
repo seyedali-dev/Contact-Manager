@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/cssKarim/logIn-signUp.css}">
+    <link rel="stylesheet" th:href="@{/cssKarim/main.css}">
+    <meta charset="utf-8" th:fragment="layout(content)" xmlns:th="http://www.thymeleaf.org">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title th:text="${title}">Base</title>
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+    <link rel="stylesheet" th:href="@{/css/userpanel.css}">
+    <!--    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"-->
+
+    <!--          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">-->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <!--font awesome-->
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+
+</head>
+<body>
+<!--navbar-->
+<nav class="fixed-top navbar navbar-expand-lg bg-navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Contact Manager</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-uppercase">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link" href="#" th:href="@{/}">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="navbar-brand text-light display-5" style="font-weight: inherit; font-style: oblique"
+                       th:text="${user.name}"></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<!--end of navbar-->
+<!--sidebar-->
+<div class="sidebar mt-2">
+    <span class="crossBtn" onclick="toggleSidebar()">&times;</span>
+    <a class="item" style="text-decoration: goldenrod" th:href="@{/user/index}"><i aria-hidden="true"
+                                                                                   class="fa fa-home"></i> Home</a>
+    <a class="item" style="text-decoration: none" th:href="@{/user/show-contacts/0}"><i aria-hidden="true"
+                                                                                        class="fa fa-address-card"></i>
+        View Contacts</a>
+    <a class="item" style="text-decoration: none" th:href="@{/user/add-contact}"><i aria-hidden="true"
+                                                                                    class="fa fa-pencil-alt"></i> Add
+        Contact</a>
+    <a class="item" style="text-decoration: none" th:href="@{/user/profile}"><i aria-hidden="true"
+                                                                                class="fa fa-user-circle"></i>
+        Profile</a>
+    <a class="item" href="" style="text-decoration: none"><i aria-hidden="true" class="fa fa-cog"></i> Settings</a>
+    <a class="item" style="text-decoration: none" th:href="@{/logout}"><i aria-hidden="true"
+                                                                          class="fa fa-sign-out-alt"></i> Logout</a>
+    <div class="divider"></div>
+</div>
+<!--end of sidebar-->
+
+
+<div class="d-flex flex-column h-100 justify-content-center mt-5">
+    <div class="logIn col-md-5 col-10 rounded-3 p-5 box-shadow">
+        <div class="container text-center mb-3 img-fluid">
+            <img th:src="@{'/img/default.png'}" alt="default">
+        </div>
+        <h2 class="text-uppercase text-light text-center fs-1" style="font-family: 'JetBrains Mono ExtraBold'">[[${user.name}]]</h2>
+        <div class="inputs">
+            <input class="rounded-pill text-center text-light d-flex mt-4" name="email" placeholder="Email" style="font-family: 'JetBrains Mono Light'" th:value="${user.email}" type="email">
+            <input class="rounded-pill text-center text-light d-flex mt-4" name="email" placeholder="Account Type" style="font-family: 'JetBrains Mono Light'" th:value="${user.role}" type="text">
+            <input class="rounded-pill text-center text-light d-flex mt-4" name="email" placeholder="Account active" style="font-family: 'JetBrains Mono Light'" th:value="${user.enabled}" type="text">
+        </div>
+        <div class="submit-logIn">
+            <input class=" rounded-pill d-flex mt-3 text-light p-2 ps-4 pe-4" type="button" value="Save edits!">
+        </div>
+    </div>
+</div>
+<script crossorigin="anonymous"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

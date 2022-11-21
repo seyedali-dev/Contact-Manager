@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="normal/base::layout(~{::section})" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section>
+    <section class="intro mt-4">
+        <div class="bg-image h-100">
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+
+
+                            <div class="alert text-center" role="alert"
+                                 th:classappend="${session.message.type}" th:if="${session.message}">
+                                <p th:text="${session.message.message}"></p>
+                                <p th:text="${#session.removeAttribute('message')}"></p>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
+                                         style="position: relative">
+                                        <h1 class="text-center mt-3">Contacts</h1>
+
+                                        <!--search-->
+                                        <div class="search-container my-4">
+                                            <input onkeyup="search()" class="form-control" id="search-input" placeholder="Search a contact"
+                                                   type="text">
+                                            <div class="search-result">
+
+                                            </div>
+                                        </div>
+                                        <table class="table table-dark mb-0">
+                                            <thead style="background-color: #393939;">
+                                            <tr class="text-uppercase text-success">
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody th:each="e:${contacts}">
+                                            <tr>
+                                                <td th:text="${'CM_'+e.contactId}"></td>
+                                                <td>
+                                                    <img alt="profile image" class="profile_picture_base"
+                                                         th:src="@{'/img/' + ${e.image}}">
+                                                    <span th:text="${e.name}"></span>
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{'/user/' + ${e.contactId} + '/contacts'}"><span
+                                                            th:text="${e.email}"></span></a>
+                                                </td>
+                                                <td th:text="${e.phone}"></td>
+
+
+                                                <td>
+                                                    <!--update (make sure the method is POST since we're using another method i.e. using single handler in controller and with method POST)-->
+                                                    <form method="POST"
+                                                          th:action="@{'/user/update-contact/' + ${e.contactId}}">
+                                                        <button class="btn btn-primary" type="submit">Update</button>
+                                                    </form>
+
+
+                                                    <!--delete-->
+                                                    <a class="btn btn-danger"
+                                                       th:onclick="|deleteContact(${e.contactId})|">Delete</a>
+                                                </td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--pagination-->
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination bg-dark mt-3">
+                                                <li class="page-item" th:if="${currentPage != 0}"><a class="page-link"
+                                                                                                     th:href="@{'/user/show-contacts/'+${currentPage-1}}">Previous</a>
+                                                </li>
+
+
+                                                <li class="page-item"
+                                                    th:each="i: ${#numbers.sequence(1, totalPages)}"
+                                                    th:if="${currentPage==i-1?'active':''}">
+                                                    <a class="page-link"
+                                                       th:href="@{'/user/show-contacts/'+${i-1}}"><span
+                                                            th:text="${i}"></span></a></li>
+
+
+                                                <li class="page-item" th:if="${currentPage != totalPages-1}"><a
+                                                        class="page-link"
+                                                        th:href="@{'/user/show-contacts/'+${currentPage+1}}">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: rgb(226, 194, 208);
+    background: linear-gradient(203deg, rgb(226, 194, 208) 0%, rgb(76, 118, 168) 93%)
+}
+
+header {
+    background: #2a2b38;
+}
+
+.user-icon {
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.user-icon:hover {
+    color: #DAA520 !important;
+    font-size: 2.5rem !important;
+}
+
+.user-info-content {
+    color: #fff;
+    background-image: linear-gradient(203deg, #00416A 10%, #afb0b1 100%);
+}
+
+.login-sinup-btn {
+    text-decoration: none;
+    padding: 8px 20px;
+    color: #fff;
+    border: 2px #DAA520 solid;
+    background-color: #daa52000;
+    transition: 0.5s;
+}
+
+.login-sinup-btn:hover {
+    background-color: #DAA520;
+    color: #fff;
+}
+
+.logout-btn{
+    transition: .2s;
+}
+
+.logout-btn:hover{
+    color: #DAA520 !important;
+    font-size: 1.3rem;
+}
+
+
+.contact-link {
+    transition: 0.5s;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+footer {
+    background: #2a2b38;
+    border-top: 2px solid #000;
+    color: #fff;
+}
