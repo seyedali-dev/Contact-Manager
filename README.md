@@ -11,20 +11,4 @@ This project uses these technologies:
 6- Html/csffsf/bootstrap/js
 7- Hibernate validator
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+note that my focus was on the back-end side and the security part so the front-end is kind of... dull.
