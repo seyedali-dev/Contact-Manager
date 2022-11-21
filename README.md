@@ -8,8 +8,23 @@ This project uses these technologies:
 3- Spring Data Jpa
 4- MySQL
 5- Thymeleaf
-6- html/css/bootstrap/js
+6- Html/csffsf/bootstrap/js
 7- Hibernate validator
 
 
-note that my focus was on the back-end side and the security part so the front-end is kind of... dull.
+sr/bin/bash: line 1: q: command not found
+ls
+dif
+
+
+
+
+
+
+
+
+
+
+
+fsk
+
