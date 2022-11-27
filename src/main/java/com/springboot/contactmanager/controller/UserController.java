@@ -11,6 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +30,14 @@ import java.security.Principal;
 @Configuration
 @RequestMapping("/user")
 public class UserController {
-    private final UserRepository userRepo;
-    private final ContactRepository contactRepo;
+    @Autowired
+    private UserRepository userRepo;
 
     @Autowired
-    public UserController(UserRepository userRepo, ContactRepository contactRepo) {
-        this.userRepo = userRepo;
-        this.contactRepo = contactRepo;
-    }
+    private ContactRepository contactRepo;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /*
         *this method is for getting the data from the user, in any route that it had fired.
@@ -233,5 +234,33 @@ public class UserController {
     public String profile(Model model) {
         model.addAttribute("title", "User profile");
         return "normal/profile";
+    }
+
+    //settings
+    @GetMapping("/settings")
+    public String settings(Model model) {
+        model.addAttribute("title", "Settings");
+        return "normal/settings";
+    }
+
+    //change password handler
+    @PostMapping("/change-password")
+    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 Principal principal,
+                                 HttpSession session) {
+        User currentUser = userRepo.findByEmail(principal.getName());
+//        System.out.println("oldpass= "+oldPassword);
+//        System.out.println("newpass= "+newPassword);
+        if (bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
+            //change password
+            currentUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
+            userRepo.save(currentUser);
+            session.setAttribute("message", new Message("Password changed successfully", "alert-success"));
+        } else {
+            session.setAttribute("message", new Message("Old password does not match!", "alert-danger"));
+            return "redirect:/user/settings";
+        }
+        return "redirect:/user/profile";
     }
 }

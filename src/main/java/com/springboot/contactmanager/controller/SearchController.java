@@ -14,14 +14,10 @@ import java.util.List;
 
 @RestController
 public class SearchController {
-    private UserRepository userRepo;
-    private ContactRepository contactRepo;
-
     @Autowired
-    public SearchController(UserRepository userRepo, ContactRepository contactRepo) {
-        this.userRepo = userRepo;
-        this.contactRepo = contactRepo;
-    }
+    private UserRepository userRepo;
+    @Autowired
+    private ContactRepository contactRepo;
 
     @GetMapping("/search/{query}")
     public ResponseEntity<?> search(@PathVariable("query") String query, Principal principal) {

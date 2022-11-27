@@ -77,9 +77,15 @@
 </div>
 <!--end of sidebar-->
 
-
-<div class="d-flex flex-column h-100 justify-content-center mt-5">
+<div class="d-flex flex-column h-100 justify-content-center my-5">
+    .
     <div class="logIn col-md-5 col-10 rounded-3 p-5 box-shadow">
+        <div class="container text-center text-white">
+            <div class="alert text-center" role="alert" th:classappend="${session.message.type}" th:if="${session.message}">
+                <p th:text="${session.message.message}"></p>
+                <p th:text="${#session.removeAttribute('message')}"></p>
+            </div>
+        </div>
         <div class="container text-center mb-3 img-fluid">
             <img th:src="@{'/img/default.png'}" alt="default">
         </div>

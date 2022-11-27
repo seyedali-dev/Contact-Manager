@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<section class="vh-100 gradient-custom">
+    <div class="container h-50">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <form th:action="@{/send-otp}" method="post">
+                            <div class="container text-center">
+                                <h1>Forgot password</h1>
+                                <hr>
+                                <input type="email" name="email" class="form-control mt-5" placeholder="Enter your valid email">
+                                <button class="btn btn-outline-warning mt-3" type="submit">Send OTP</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
