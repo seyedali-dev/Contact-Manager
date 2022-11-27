@@ -13,10 +13,19 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-2 text-center">
+
+                        <div class="container">
+                            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center">
+                                <div th:text="${session.message.message}"></div>
+                                <div th:text="${#session.removeAttribute('message')}"></div>
+                            </div>
+                        </div>
+
+
                         <form th:action="@{/verify-otp}" method="post">
                             <div class="container text-center">
-                                <input type="email" name="email" class="form-control mt-3" placeholder="Enter the received OTP to validate your email!">
-                                <button class="btn btn-outline-warning mt-3 mb-3" type="submit">verify OTP</button>
+                                <input type="text" name="otp" class="form-control mt-3" placeholder="Enter the OTP sent to your email!">
+                                <button class="btn btn-outline-success mt-3 mb-3" type="submit">verify OTP</button>
                             </div>
                         </form>
                     </div>

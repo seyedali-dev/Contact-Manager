@@ -13,6 +13,14 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
+
+                        <div class="container">
+                            <div th:if="${session.message}" class="alert alert-danger text-center">
+                                <div th:text="${session.message}"></div>
+                                <div th:text="${#session.removeAttribute('message')}"></div>
+                            </div>
+                        </div>
+
                         <form th:action="@{/send-otp}" method="post">
                             <div class="container text-center">
                                 <h1>Forgot password</h1>

@@ -20,6 +20,7 @@
 
                                 <div th:if="${param.error}" class="alert alert-danger">Invalid username or it doesn't exist</div>
                                 <div th:if="${param.logout}" class="alert alert-success">You have been logged out!</div>
+                                <div th:if="${param.change}" class="alert alert-success text-center"><div th:text="${param.change}"></div></div>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" id="username" name="username"
@@ -48,7 +49,7 @@
                             </div>
 
                             <div>
-                                <p class="mb-0">Don't have an account? <a href="/signup/" class="text-white-50 fw-bold">Sign
+                                <p>Don't have an account? <a href="/signup/" class="text-white-50 fw-bold">Sign
                                     Up</a>
                                 </p>
                             </div>
